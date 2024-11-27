@@ -301,22 +301,21 @@ namespace GesttionPlantas.Controlador
         }
 
         // Método para eliminar plantas de la lista
-        public void Eliminar(List<Planta> listaEliminadas)
+        public void Eliminar(Planta plantaEliminada)
         {
             // Recorre cada planta de la lista proporcionada
-            foreach (Planta planta in listaEliminadas)
-            {
+          
                 // Recorre la lista principal desde el final para evitar problemas de índices
                 for (int i = list.Count - 1; i >= 0; i--)
                 {
-                    if (list[i].Equals(planta))
+                    if (list[i].Equals(plantaEliminada))
                     {
                         list.RemoveAt(i); // Elimina la planta
-                        Console.WriteLine("Planta eliminada con éxito.");
                         break; // Sale del bucle
                     }
                 }
-            }
+            GuardarCatalogo();
+            
         }
 
         // Método para modificar una planta existente en la lista
