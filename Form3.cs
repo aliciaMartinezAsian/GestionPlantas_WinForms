@@ -71,8 +71,8 @@ namespace GestionPlantas_WinForms
             MessageBox.Show("Planta agregada con éxito.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LimpiarCampos();
 
+            }
 
-        }
 
         private void LimpiarCampos()
         {

@@ -85,9 +85,6 @@ namespace GestionPlantas_WinForms
 
         }
 
-
-
-
         private void verPlantasToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
