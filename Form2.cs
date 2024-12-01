@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,7 +30,7 @@ namespace GestionPlantas_WinForms
             this.StartPosition = FormStartPosition.CenterScreen;
 
             this.Width = 800;
-            this.Height = 400;
+            this.Height = 430;
 
             ctr.CargarCatalogo();
             plantas = ctr.ObtenerCatalogo();
@@ -43,12 +44,18 @@ namespace GestionPlantas_WinForms
             {
                 MessageBox.Show("No hay plantas en el catálogo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+        }
+
+        private void ActualizarIndice()
+        {
+            label6.Text = $"Planta {index + 1} de {plantas.Count}";
         }
 
         private void ActualizarVista()
         {
-            // Si el índice es válido y hay plantas en la lista
-            if (index < plantas.Count && index >= 0)
+            // Verificar si el índice es válido y si hay plantas en la lista
+            if (index >= 0 && index < plantas.Count)
             {
                 var plantaActual = plantas[index];
                 textBox1.Text = plantaActual.NombreCientifico;
@@ -59,16 +66,36 @@ namespace GestionPlantas_WinForms
                 checkBox2.Checked = plantaActual.Flor;
                 checkBox1.Checked = plantaActual.Fruto;
 
+                // Comprobar si la foto existe antes de intentar cargarla
+                string filePath = $"../../../res/{plantaActual.Foto}.jpg";
+
+                // Verificar si el archivo existe
+                if (File.Exists(filePath))
+                {
+                    // Cargar la imagen
+                    pictureBox1.Image = new Bitmap(filePath);
+
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró la imagen asociada a esta planta.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    pictureBox1.Image = null; // Limpiar la imagen si no se encuentra
+                }
+
                 plantaMasInfo = plantaActual;
 
-                // Habilita o deshabilita los botones según el índice
+                // Habilitar o deshabilitar los botones según el índice
                 button2.Enabled = index > 0; // Deshabilita si estamos en el primer elemento
                 button3.Enabled = index < plantas.Count - 1; // Deshabilita si estamos en el último elemento
+                button5.Enabled = plantas.Count > 0 ; //Deshabilita si no hay elementos
             }
+
             else
             {
                 MessageBox.Show("Índice fuera de rango.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            ActualizarIndice();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -112,12 +139,13 @@ namespace GestionPlantas_WinForms
             // Verifica el tipo de planta para mostrar atributos específicos
             if (plantaMasInfo is PlantaInterior interior)
             {
-
-
+                PlantaInterior planta = (PlantaInterior)plantaMasInfo;
+                MessageBox.Show($"¿Es tóxica para perros o humanos?: {(planta.Toxicidad ? "sí" : "no")}\nIluminación: {planta.TipoIluminacion}\nHumedad: {planta.Humedad}", "Detalles", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (plantaMasInfo is PlantaExterior exterior)
             {
-
+                PlantaExterior planta = (PlantaExterior)plantaMasInfo;
+                MessageBox.Show($"Temperatura mínima: {planta.TemperaturaMin}ºC\n Temperatura máxima: {planta.TemperaturaMax}ºC\n Época de floración: {planta.EpocaFloracion}\n Época de cosecha: {planta.EpocaCosecha}", "Detalles", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -139,12 +167,22 @@ namespace GestionPlantas_WinForms
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button5_Click_1(object sender, EventArgs e)
         {
-            ctr.Eliminar(plantaMasInfo);
-            plantas = ctr.ObtenerCatalogo();
-            index--;
-            ActualizarVista();
+            if (plantaMasInfo != null)
+            {
+                ctr.Eliminar(plantaMasInfo);
+                plantas = ctr.ObtenerCatalogo();
+                if (index >= plantas.Count)
+                {
+                    index = plantas.Count - 1; // Ajusta al último índice válido
+                }
+                ActualizarVista();
+            }
+            else
+            {
+                MessageBox.Show("No hay ninguna planta seleccionada para eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 
@@ -154,6 +192,18 @@ namespace GestionPlantas_WinForms
             this.Hide();
         }
 
+        private void buscarPlantasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form7 form7 = new Form7();
+            form7.Show();
+            this.Hide();
+        }
 
+        private void ordenarPlantasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form7 form7 = new Form7();
+            form7.Show();
+            this.Hide();
+        }
     }
 }

@@ -59,6 +59,7 @@
             label9 = new Label();
             label10 = new Label();
             comboBox2 = new ComboBox();
+            label11 = new Label();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -106,12 +107,14 @@
             buscarPlantasToolStripMenuItem.Name = "buscarPlantasToolStripMenuItem";
             buscarPlantasToolStripMenuItem.Size = new Size(95, 20);
             buscarPlantasToolStripMenuItem.Text = "Buscar plantas";
+            buscarPlantasToolStripMenuItem.Click += buscarPlantasToolStripMenuItem_Click;
             // 
             // ordenarPlantasToolStripMenuItem
             // 
             ordenarPlantasToolStripMenuItem.Name = "ordenarPlantasToolStripMenuItem";
             ordenarPlantasToolStripMenuItem.Size = new Size(103, 20);
             ordenarPlantasToolStripMenuItem.Text = "Ordenar plantas";
+            ordenarPlantasToolStripMenuItem.Click += ordenarPlantasToolStripMenuItem_Click;
             // 
             // guardarToolStripMenuItem
             // 
@@ -165,7 +168,7 @@
             // 
             textBox3.Location = new Point(144, 119);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
+            textBox3.Size = new Size(67, 23);
             textBox3.TabIndex = 21;
             // 
             // label4
@@ -197,11 +200,13 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
             pictureBox1.Location = new Point(533, 44);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(224, 261);
+            pictureBox1.Size = new Size(224, 336);
             pictureBox1.TabIndex = 26;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click_1;
             // 
             // checkBox1
             // 
@@ -309,12 +314,23 @@
             comboBox2.Size = new Size(121, 23);
             comboBox2.TabIndex = 51;
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(220, 122);
+            label11.Name = "label11";
+            label11.Size = new Size(24, 15);
+            label11.TabIndex = 52;
+            label11.Text = "cm";
+            // 
             // Form4
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(217, 242, 180);
-            ClientSize = new Size(784, 361);
+            ClientSize = new Size(784, 391);
+            Controls.Add(label11);
             Controls.Add(comboBox2);
             Controls.Add(label10);
             Controls.Add(label9);
@@ -380,5 +396,6 @@
         private Label label9;
         private Label label10;
         private ComboBox comboBox2;
+        private Label label11;
     }
 }

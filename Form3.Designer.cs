@@ -54,6 +54,7 @@
             comboBox1 = new ComboBox();
             label6 = new Label();
             comboBox2 = new ComboBox();
+            label7 = new Label();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -101,12 +102,14 @@
             buscarPlantasToolStripMenuItem.Name = "buscarPlantasToolStripMenuItem";
             buscarPlantasToolStripMenuItem.Size = new Size(95, 20);
             buscarPlantasToolStripMenuItem.Text = "Buscar plantas";
+            buscarPlantasToolStripMenuItem.Click += buscarPlantasToolStripMenuItem_Click;
             // 
             // ordenarPlantasToolStripMenuItem
             // 
             ordenarPlantasToolStripMenuItem.Name = "ordenarPlantasToolStripMenuItem";
             ordenarPlantasToolStripMenuItem.Size = new Size(103, 20);
             ordenarPlantasToolStripMenuItem.Text = "Ordenar plantas";
+            ordenarPlantasToolStripMenuItem.Click += ordenarPlantasToolStripMenuItem_Click;
             // 
             // guardarToolStripMenuItem
             // 
@@ -118,11 +121,13 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(531, 43);
+            pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
+            pictureBox1.Location = new Point(510, 39);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(224, 261);
+            pictureBox1.Size = new Size(224, 336);
             pictureBox1.TabIndex = 22;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // label4
             // 
@@ -154,7 +159,7 @@
             // 
             textBox3.Location = new Point(136, 154);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
+            textBox3.Size = new Size(67, 23);
             textBox3.TabIndex = 20;
             // 
             // label3
@@ -264,12 +269,23 @@
             comboBox2.Size = new Size(121, 23);
             comboBox2.TabIndex = 42;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(212, 157);
+            label7.Name = "label7";
+            label7.Size = new Size(24, 15);
+            label7.TabIndex = 43;
+            label7.Text = "cm";
+            // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(217, 242, 180);
-            ClientSize = new Size(784, 361);
+            ClientSize = new Size(784, 391);
+            Controls.Add(label7);
             Controls.Add(comboBox2);
             Controls.Add(label6);
             Controls.Add(comboBox1);
@@ -325,5 +341,6 @@
         private ComboBox comboBox1;
         private Label label6;
         private ComboBox comboBox2;
+        private Label label7;
     }
 }

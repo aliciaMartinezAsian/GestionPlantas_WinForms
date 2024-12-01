@@ -57,7 +57,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(30, 108);
+            label3.Location = new Point(39, 127);
             label3.Name = "label3";
             label3.Size = new Size(39, 15);
             label3.TabIndex = 48;
@@ -66,7 +66,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(30, 75);
+            label2.Location = new Point(39, 94);
             label2.Name = "label2";
             label2.Size = new Size(92, 15);
             label2.TabIndex = 47;
@@ -75,7 +75,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(30, 40);
+            label1.Location = new Point(39, 59);
             label1.Name = "label1";
             label1.Size = new Size(103, 15);
             label1.TabIndex = 46;
@@ -84,7 +84,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(30, 138);
+            label4.Location = new Point(39, 157);
             label4.Name = "label4";
             label4.Size = new Size(32, 15);
             label4.TabIndex = 51;
@@ -92,28 +92,28 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(151, 139);
+            textBox4.Location = new Point(160, 158);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(100, 23);
             textBox4.TabIndex = 55;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(151, 105);
+            textBox3.Location = new Point(160, 124);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(100, 23);
             textBox3.TabIndex = 54;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(151, 72);
+            textBox2.Location = new Point(160, 91);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 53;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(151, 37);
+            textBox1.Location = new Point(160, 56);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 23);
             textBox1.TabIndex = 52;
@@ -121,7 +121,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(285, 185);
+            checkBox1.Location = new Point(294, 204);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(59, 19);
             checkBox1.TabIndex = 59;
@@ -131,7 +131,7 @@
             // Florece
             // 
             Florece.AutoSize = true;
-            Florece.Location = new Point(151, 185);
+            Florece.Location = new Point(160, 204);
             Florece.Name = "Florece";
             Florece.Size = new Size(57, 19);
             Florece.TabIndex = 58;
@@ -140,27 +140,30 @@
             // 
             // button1
             // 
-            button1.Location = new Point(234, 261);
+            button1.Location = new Point(243, 280);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 62;
             button1.Text = "Guardar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
             pictureBox1.Location = new Point(531, 23);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(224, 261);
+            pictureBox1.Size = new Size(224, 336);
             pictureBox1.TabIndex = 63;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click_1;
             // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
             comboBox2.Items.AddRange(new object[] { "Primavera", "Verano", "Otoño", "Invierno" });
-            comboBox2.Location = new Point(352, 68);
+            comboBox2.Location = new Point(361, 87);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(121, 23);
             comboBox2.TabIndex = 73;
@@ -168,7 +171,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(289, 71);
+            label10.Location = new Point(298, 90);
             label10.Name = "label10";
             label10.Size = new Size(52, 15);
             label10.TabIndex = 72;
@@ -177,7 +180,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(285, 37);
+            label9.Location = new Point(294, 56);
             label9.Name = "label9";
             label9.Size = new Size(56, 15);
             label9.TabIndex = 71;
@@ -187,7 +190,7 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Primavera", "Verano", "Otoño", "Invierno" });
-            comboBox1.Location = new Point(350, 34);
+            comboBox1.Location = new Point(359, 53);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(121, 23);
             comboBox1.TabIndex = 64;
@@ -195,7 +198,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(453, 140);
+            label8.Location = new Point(462, 161);
             label8.Name = "label8";
             label8.Size = new Size(20, 15);
             label8.TabIndex = 70;
@@ -204,7 +207,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(453, 108);
+            label5.Location = new Point(462, 127);
             label5.Name = "label5";
             label5.Size = new Size(20, 15);
             label5.TabIndex = 69;
@@ -212,7 +215,7 @@
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(401, 138);
+            textBox5.Location = new Point(410, 157);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(46, 23);
             textBox5.TabIndex = 68;
@@ -220,7 +223,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(289, 138);
+            label11.Location = new Point(298, 157);
             label11.Name = "label11";
             label11.Size = new Size(99, 15);
             label11.TabIndex = 67;
@@ -228,7 +231,7 @@
             // 
             // textBox8
             // 
-            textBox8.Location = new Point(401, 106);
+            textBox8.Location = new Point(410, 125);
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(46, 23);
             textBox8.TabIndex = 66;
@@ -236,7 +239,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(289, 109);
+            label12.Location = new Point(298, 128);
             label12.Name = "label12";
             label12.Size = new Size(97, 15);
             label12.TabIndex = 65;
@@ -246,8 +249,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(255, 183, 195);
-            ClientSize = new Size(784, 361);
+            ClientSize = new Size(784, 391);
             Controls.Add(comboBox2);
             Controls.Add(label10);
             Controls.Add(label9);

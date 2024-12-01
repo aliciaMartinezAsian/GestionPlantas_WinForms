@@ -21,8 +21,8 @@ namespace GesttionPlantas.Modelo
 
 
         //Constructor principal que coge los atributos del padre también
-        public PlantaInterior(string nombreCientifico, string nombreComun, int altura, string hoja, bool flor, bool fruto, int tipoIluminacion,int humedad, bool toxicidad)
-            : base(nombreCientifico,nombreComun, altura,hoja,flor, fruto)
+        public PlantaInterior(string nombreCientifico, string nombreComun, int altura, string hoja, bool flor, bool fruto,int foto, int tipoIluminacion,int humedad, bool toxicidad)
+            : base(nombreCientifico,nombreComun, altura,hoja,flor, fruto,foto)
         {
             TipoIluminacion = (Intensidad) tipoIluminacion;
             Humedad =(Intensidad) humedad;
@@ -54,11 +54,11 @@ namespace GesttionPlantas.Modelo
         //Enum que guarda los grados de intesidad (para iluminación y humedad) y la relaciona con un int
         public enum Intensidad
         {
-            MUY_BAJA = 1,
-            BAJA = 2,
-            MEDIA = 3,
-            ALTA = 4,
-            MUY_ALTA = 5,
+            MUY_BAJA = 0,
+            BAJA = 1,
+            MEDIA = 2,
+            ALTA = 3,
+            MUY_ALTA = 4,
         }
     }
 

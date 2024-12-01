@@ -54,6 +54,7 @@
             checkBox2 = new CheckBox();
             textBox4 = new TextBox();
             label5 = new Label();
+            label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -125,7 +126,7 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(503, 41);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(224, 261);
+            pictureBox1.Size = new Size(224, 336);
             pictureBox1.TabIndex = 20;
             pictureBox1.TabStop = false;
             // 
@@ -188,6 +189,7 @@
             button5.TabIndex = 28;
             button5.Text = "Borrar";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click_1;
             // 
             // menuStrip1
             // 
@@ -232,12 +234,14 @@
             buscarPlantasToolStripMenuItem.Name = "buscarPlantasToolStripMenuItem";
             buscarPlantasToolStripMenuItem.Size = new Size(95, 20);
             buscarPlantasToolStripMenuItem.Text = "Buscar plantas";
+            buscarPlantasToolStripMenuItem.Click += buscarPlantasToolStripMenuItem_Click;
             // 
             // ordenarPlantasToolStripMenuItem
             // 
             ordenarPlantasToolStripMenuItem.Name = "ordenarPlantasToolStripMenuItem";
             ordenarPlantasToolStripMenuItem.Size = new Size(103, 20);
             ordenarPlantasToolStripMenuItem.Text = "Ordenar plantas";
+            ordenarPlantasToolStripMenuItem.Click += ordenarPlantasToolStripMenuItem_Click;
             // 
             // guardarToolStripMenuItem
             // 
@@ -275,12 +279,22 @@
             label5.TabIndex = 32;
             label5.Text = "cm";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(237, 327);
+            label6.Name = "label6";
+            label6.Size = new Size(0, 15);
+            label6.TabIndex = 33;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.FromArgb(217, 242, 180);
-            ClientSize = new Size(784, 361);
+            ClientSize = new Size(784, 391);
+            Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(textBox4);
             Controls.Add(checkBox2);
@@ -338,5 +352,6 @@
         private CheckBox checkBox2;
         private TextBox textBox4;
         private Label label5;
+        private Label label6;
     }
 }

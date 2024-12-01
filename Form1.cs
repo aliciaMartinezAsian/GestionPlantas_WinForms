@@ -51,5 +51,20 @@ namespace GestionPlantas_WinForms
             ctr.GuardarCatalogo();
             this.Hide();
         }
+
+        private void buscarPlantasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form7 form7 = new Form7();
+            form7.Show();
+            this.Hide();
+
+        }
+
+        private void ordenarPlantasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form7 form7 = new Form7();
+            form7.Show();
+            this.Hide();
+        }
     }
 }

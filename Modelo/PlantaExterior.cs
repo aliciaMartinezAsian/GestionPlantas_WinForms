@@ -16,17 +16,21 @@ namespace GesttionPlantas.Modelo
             {
                 return epocaFloracion;
             }
-
-            set { 
-                
-                if (Flor) {
-
+            set
+            {
+                if (Flor)
+                {
                     epocaFloracion = value;
-
                 }
-
+                else
+                {
+                    epocaFloracion = Estacion.NINGUNA;
+                }
             }
+
         }
+
+
 
         private Estacion epocaCosecha;
 
@@ -38,13 +42,16 @@ namespace GesttionPlantas.Modelo
             }
             set
             {
-                if (Fruto) {
-
+                if (Fruto)
+                {
                     epocaCosecha = value;
-                    
-
+                }
+                else
+                {
+                    epocaCosecha = Estacion.NINGUNA;
                 }
             }
+
         }
 
         //Atributo que hace referencia a la temperatura mínima que aguanta la planta
@@ -55,8 +62,8 @@ namespace GesttionPlantas.Modelo
 
 
         //Constructor principal que coge los atributos del padre también
-        public PlantaExterior(string nombreCientifico, string nombreComun, int altura, string hoja, bool flor, bool fruto, int epocaFloracion, int epocaCosecha, int temperaturaMin, int temperaturaMax)
-            : base(nombreCientifico, nombreComun, altura, hoja, flor, fruto)
+        public PlantaExterior(string nombreCientifico, string nombreComun, int altura, string hoja, bool flor, bool fruto,int foto, int epocaFloracion, int epocaCosecha, int temperaturaMin, int temperaturaMax)
+            : base(nombreCientifico, nombreComun, altura, hoja, flor, fruto,foto)
         {
             EpocaFloracion = (Estacion) epocaFloracion;
             EpocaCosecha = (Estacion) epocaCosecha;
@@ -114,10 +121,11 @@ namespace GesttionPlantas.Modelo
         //Enum que guarda las estaciones del año y la relaciona con un int
         public enum Estacion
         {
-            PRIMAVERA = 1,
-            VERANO = 2,
-            OTOÑO = 3,
-            INVIERNO = 4,
+            PRIMAVERA = 0,
+            VERANO = 1,
+            OTOÑO = 2,
+            INVIERNO = 3,
+            NINGUNA = 4,
         }
     }
 

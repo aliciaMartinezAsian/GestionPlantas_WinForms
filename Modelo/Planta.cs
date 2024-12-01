@@ -94,25 +94,21 @@ namespace GesttionPlantas.Modelo
         public bool Fruto { get; set; }
 
         //Atributo para en un futuro almacenar una foto
-        public int Foto
-        { get
-            {
-                return 0;
-            }
-        }
+        public int Foto { get; set;}
 
         //Constructor vacío
         public Planta() { }
 
         //Constructor principal
-        public Planta(string nombreCientifico, string nombreComun, int altura,string hoja, bool flor, bool fruto)
+        public Planta(string nombreCientifico, string nombreComun, int altura,string hoja, bool flor, bool fruto, int foto)
         {
             NombreCientifico = nombreCientifico;
             NombreComun = nombreComun;
             Altura = altura;
             Hoja = hoja;
             Flor = flor;
-            Fruto = fruto;    
+            Fruto = fruto;   
+            Foto = foto;
 
         }
 

@@ -13,14 +13,17 @@ namespace GesttionPlantas.Controlador
         private const char MARCA_EXTERIORES = 'E';
 
         //Número de bytes que ocupa guardar cada tipo de planta
-        private const int BYTES_INTERIORES = 169;
-        private const int BYTES_EXTERIORES = 176;
+        private const int BYTES_INTERIORES = 173;
+        private const int BYTES_EXTERIORES = 180;
 
         //Lista de plantas para manejar las plantas
         private static List<Planta> list = new List<Planta>();
 
         //Controlador para hacer el singleton
         private static CtrPlanta miControlador;
+
+        //Número máximo de imágenes
+        private static int numImagen = 0;
 
         //El constructor es privado para mejorar la seguridad con el método singleton
         private CtrPlanta() { }
@@ -85,9 +88,42 @@ namespace GesttionPlantas.Controlador
             }
         }
 
+
+        public int Obtener_Num_Imagenes()
+        {
+            string folderPath = "../../../res"; // Ruta de la carpeta 
+
+            // Obtener todos los archivos en la carpeta
+            string[] files = Directory.GetFiles(folderPath);
+
+            // Extraer los números de los nombres de archivo
+            var numeros = files
+                .Select(file => Path.GetFileNameWithoutExtension(file)) // Obtener el nombre sin extensión
+                .Select(name => int.Parse(name)) // Convertir los nombres a números
+                .ToList();
+
+            if (numeros.Any())
+            {
+                // Obtener el número más grande
+                int maxNumero = numeros.Max();
+                return maxNumero + 1;
+            }
+            else
+            {
+                return numImagen;
+            }
+        }
+
+
+          
+
         // Método para leer el archivo y cargar las plantas en la lista
         public void CargarCatalogo()
+
         {
+
+            list.Clear(); // Limpia la lista para evitar duplicados
+
             // Verifica si el archivo  existe antes de intentar abrirlo
             if (File.Exists("catalogo.dat"))
             {
@@ -111,6 +147,7 @@ namespace GesttionPlantas.Controlador
                                 {
                                     // Carga la planta de interior desde el archivo y la agrega a la lista
                                     list.Add(CargarPlantaInterior(br));
+                                    
                                 }
                                 break;
 
@@ -120,6 +157,7 @@ namespace GesttionPlantas.Controlador
                                 {
                                     // Carga la planta de exterior desde el archivo y la agrega a la lista
                                     list.Add(CargarPlantaExterior(br));
+                               
                                 }
                                 break;
                         }
@@ -152,6 +190,7 @@ namespace GesttionPlantas.Controlador
                     bw.Write(interior.Toxicidad);
                     // Añade la planta a la lista
                     list.Add(interior);
+                    numImagen++;
                 }
                 // Si la planta es de tipo PlantaExterior
                 else if (planta is PlantaExterior exterior)
@@ -165,6 +204,7 @@ namespace GesttionPlantas.Controlador
                     bw.Write(exterior.TemperaturaMax);
                     // Añade la planta a la lista en memoria
                     list.Add(exterior);
+                    numImagen++;
                 }
             }
         }
@@ -179,24 +219,36 @@ namespace GesttionPlantas.Controlador
             bw.Write(Util.CompletarHasta(plant.Hoja, 50));
             bw.Write(plant.Flor);
             bw.Write(plant.Fruto);
+            bw.Write(plant.Foto);
         }
 
         // Método para cargar una planta de tipo PlantaInterior desde el archivo
         private PlantaInterior CargarPlantaInterior(BinaryReader br)
         {
-            // Lee los datos de una planta de interior
-            string nombreCientifico = br.ReadString().Trim();
-            string nombreComun = br.ReadString().Trim();
-            int altura = br.ReadInt32();
-            string hoja = br.ReadString().Trim();
-            bool flor = br.ReadBoolean();
-            bool fruto = br.ReadBoolean();
-            int tipoIluminacion = br.ReadInt32();
-            int humedad = br.ReadInt32();
-            bool toxicidad = br.ReadBoolean();
+            try
+            {
+                // Lee los atributos comunes
+                string nombreCientifico = br.ReadString().Trim();
+                string nombreComun = br.ReadString().Trim();
+                int altura = br.ReadInt32();
+                string hoja = br.ReadString().Trim();
+                bool flor = br.ReadBoolean();
+                bool fruto = br.ReadBoolean();
+                int foto = br.ReadInt32();
 
-            // Devuelve una nueva instancia de PlantaInterior
-            return new PlantaInterior(nombreCientifico, nombreComun, altura, hoja, flor, fruto, tipoIluminacion, humedad, toxicidad);
+                // Lee los atributos específicos de PlantaInterior
+                int tipoIluminacion = br.ReadInt32();
+                int humedad = br.ReadInt32();
+                bool toxicidad = br.ReadBoolean();  // Aquí lees el valor de toxicidad
+
+                // Devuelve la nueva planta cargada
+                return new PlantaInterior(nombreCientifico, nombreComun, altura, hoja, flor, fruto, foto, tipoIluminacion, humedad, toxicidad);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al cargar PlantaInterior: {ex.Message}");
+                return null;
+            }
         }
 
         // Método para cargar una planta de tipo PlantaExterior desde el archivo
@@ -209,13 +261,14 @@ namespace GesttionPlantas.Controlador
             string hoja = br.ReadString().Trim();
             bool flor = br.ReadBoolean();
             bool fruto = br.ReadBoolean();
+            int foto = br.ReadInt32();
             int epocaFloracion = br.ReadInt32();
             int epocaCosecha = br.ReadInt32();
             int temperaturaMin = br.ReadInt32();
             int temperaturaMax = br.ReadInt32();
 
             // Devuelve una nueva instancia de PlantaExterior
-            return new PlantaExterior(nombreCientifico, nombreComun, altura, hoja, flor, fruto, epocaFloracion, epocaCosecha, temperaturaMin, temperaturaMax);
+            return new PlantaExterior(nombreCientifico, nombreComun, altura, hoja, flor, fruto, foto, epocaFloracion, epocaCosecha, temperaturaMin, temperaturaMax);
         }
 
         // Método para ordenar la lista de plantas según un atributo específico
@@ -249,7 +302,7 @@ namespace GesttionPlantas.Controlador
                     throw new ArgumentException("Atributo no válido.");
             }
 
-            Console.WriteLine("Lista ordenada por " + atributo);
+
             return ordenada;
         }
 
@@ -314,7 +367,7 @@ namespace GesttionPlantas.Controlador
                         break; // Sale del bucle
                     }
                 }
-            GuardarCatalogo();
+            //GuardarCatalogo();
             
         }
 
@@ -332,10 +385,10 @@ namespace GesttionPlantas.Controlador
                 }
             }
         }
-
-
-
-
-
+    
+    
+    
+    
+    
     }
 }
